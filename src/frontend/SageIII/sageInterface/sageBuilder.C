@@ -4498,7 +4498,10 @@ SageBuilder::buildDefiningFunctionDeclaration_T(const SgName & XXX_name, SgType*
   // DQ (12/3/2011): Added more checking.
      ROSE_ASSERT(paralist != NULL);
 
-     if (SageInterface::is_Python_language() == false)
+// ciwainsky: the following line fails for fortran interface declrations. It works if you allow for FORTRAN.
+//     if (SageInterface::is_Python_language() == false)
+     if (SageInterface::is_Python_language() == false &&
+         SageInterface::is_Fortran_language()==false ) 
         {
           ROSE_ASSERT(scope->containsOnlyDeclarations());
         }
